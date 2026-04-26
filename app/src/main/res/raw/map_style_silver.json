@@ -33,6 +33,15 @@
     ]
   },
   {
+    "featureType": "landscape.natural",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#004d40"
+      }
+    ]
+  },
+  {
     "featureType": "poi",
     "elementType": "labels.text.fill",
     "stylers": [
@@ -46,7 +55,7 @@
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#1b4d3e"
+        "color": "#1b5e20"
       }
     ]
   },
