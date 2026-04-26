@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
@@ -10,71 +12,140 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_map_type"
+    <!-- Top Right Controls -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16.dp"
-        android:layout_marginEnd="16.dp"
-        android:contentDescription="Toggle Map Type"
-        android:src="@android:drawable/ic_menu_mapmode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@android:color/white" />
+        android:layout_gravity="top|end"
+        android:layout_margin="16.dp"
+        android:orientation="vertical">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_map_style"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_map_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.dp"
+            android:contentDescription="Satellite"
+            android:src="@android:drawable/ic_menu_mapmode"
+            app:fabSize="mini"
+            app:tint="@android:color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_map_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.dp"
+            android:contentDescription="Styles"
+            android:src="@android:drawable/ic_menu_gallery"
+            app:fabSize="mini"
+            app:tint="@android:color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_3d_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="3D Mode"
+            android:src="@android:drawable/ic_menu_view"
+            app:fabSize="mini"
+            app:tint="@android:color/white" />
+    </LinearLayout>
+
+    <!-- Bottom Right Controls -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16.dp"
+        android:layout_gravity="bottom|end"
         android:layout_marginEnd="16.dp"
-        android:contentDescription="Map Styles"
-        android:src="@android:drawable/ic_menu_gallery"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_map_type"
-        app:tint="@android:color/white" />
+        android:layout_marginBottom="100.dp"
+        android:orientation="vertical">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.dp"
+            android:contentDescription="My Location"
+            android:src="@android:drawable/ic_menu_mylocation"
+            app:fabSize="mini"
+            app:tint="@android:color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_zoom_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.dp"
+            android:contentDescription="Zoom In"
+            android:src="@android:drawable/ic_input_add"
+            app:fabSize="mini"
+            app:tint="@android:color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_zoom_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Zoom Out"
+            android:src="@android:drawable/ic_input_delete"
+            app:fabSize="mini"
+            app:tint="@android:color/white" />
+    </LinearLayout>
+
+    <!-- Bottom Sheet for Search & Navigation -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/search_card"
+        android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16.dp"
-        app:cardCornerRadius="8.dp"
-        app:cardElevation="4.dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="80.dp"
+        app:cardCornerRadius="16.dp"
+        app:cardElevation="12.dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            app:iconifiedByDefault="false"
-            app:queryHint="Search location..." />
+            android:orientation="vertical"
+            android:padding="16.dp">
+
+            <!-- Drag Handle -->
+            <View
+                android:layout_width="40.dp"
+                android:layout_height="4.dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16.dp"
+                android:background="#DDDDDD" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_background"
+                app:iconifiedByDefault="false"
+                app:queryHint="Where to?" />
+
+            <LinearLayout
+                android:id="@+id/navigation_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16.dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Navigation"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8.dp"/>
+
+                <Button
+                    android:id="@+id/btn_get_directions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Get Directions"
+                    app:cornerRadius="8.dp" />
+            </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_zoom_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16.dp"
-        android:layout_marginBottom="16.dp"
-        android:contentDescription="Zoom In"
-        android:src="@android:drawable/ic_input_add"
-        app:layout_constraintBottom_toTopOf="@id/btn_zoom_out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@android:color/white" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_zoom_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16.dp"
-        android:layout_marginBottom="16.dp"
-        android:contentDescription="Zoom Out"
-        android:src="@android:drawable/ic_input_delete"
-        app:layout_constraintBottom_toTopOf="@id/search_card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@android:color/white" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
