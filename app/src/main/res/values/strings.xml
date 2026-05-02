@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">HazardMap</string>
+    <string name="app_name">SafeRoute</string>
+    <string name="search_hint">Search SafeRoute...</string>
+    <string name="hold_hint">Hold on map to drop a report pin</string>
+    <string name="report_title">Report an issue</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_submit">Submit report</string>
+    <string name="btn_map">Map</string>
+    <string name="btn_satellite">Satellite</string>
+    <string name="type_unsafe">Unsafe area</string>
+    <string name="type_sus_behavior">Sus behavior</string>
+    <string name="type_sus_activity">Suspicious activity</string>
+    <string name="type_emergency">Emergency</string>
+    <string name="type_unsafe_sub">Poor lighting, hazard</string>
+    <string name="type_sus_sub">Auto-clears in 1 hr</string>
+    <string name="type_emergency_sub">Immediate help needed</string>
 </resources>
